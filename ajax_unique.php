@@ -17,6 +17,10 @@
 		 echo pr2();
 		 break;
 		 
+	case 'auto_pr2':
+		 echo auto_pr2();
+		 break;
+		 
 	case 'pr3':
 		 echo pr3();
 		 break;
@@ -37,7 +41,7 @@
 	function pr1(){
 		$html       = '';
 		global $bdd;
-		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = '1'");
+		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LED1'");
 		$Temp = $reponse->fetch();
 		$prise1 = $Temp[0];
 
@@ -62,14 +66,14 @@
 			$h = @fopen("http://192.168.0.34/?LED1=ON", "rb");
 			$imageled1 = "bouton/BoutonOFF.gif";
 			$imageled1M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '1'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED1'");
 			$prise1= "ON";
 		}
 		else if ($LED1 == "ON"){
 			$h= @fopen("http://192.168.0.34/?LED1=OFF", "rb");
 			$imageled1 = "bouton/BoutonON.gif";
 			$imageled1M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '1'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED1'");
 			$prise1 = "OFF";
 		}
 		$html .='<form action="#" method="post" name="led1" id="formbouton1">';
@@ -86,7 +90,7 @@
 		
 		$html       = '';
 		global $bdd;
-		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = '2'");
+		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LED2'");
 		$Temp = $reponse->fetch();
 		$prise2 = $Temp[0];
 
@@ -111,14 +115,14 @@
 			$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
 			$imageled2 = "bouton/BoutonOFF.gif";
 			$imageled2M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '2'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED2'");
 			$prise2 = "ON";
 		}
 		else if ($LED2 == "ON"){
 			$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
 			$imageled2 = "bouton/BoutonON.gif";
 			$imageled2M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '2'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED2'");
 			$prise2 ="OFF";
 		}
 
@@ -131,11 +135,54 @@
 
 		return $html;
 	}
+	
+	function auto_pr2(){
+		
+		$html       = '';
+		global $bdd;
+		$reponse = $bdd->query("select AUTO from Position_prise where N_Prise = 'LED2'");
+		$Temp = $reponse->fetch();
+		$auto_prise2 = $Temp[0];
+
+
+		if ($auto_prise2=="ON"){
+			$auto_imageled2 = "bouton/ON-VERT.gif";
+			
+		}
+		else{
+			$auto_imageled2 = "bouton/OFF-ROUGE.gif";
+		}
+		
+		if (isset($_POST["auto_LED2"])){
+			 $auto_LED2= $_POST["auto_LED2"];
+		}
+		else{
+			$auto_LED2="";
+		}
+	
+		if ($auto_LED2 == "OFF"){
+			$auto_imageled2 = "bouton/ON-VERT.gif";
+			$bdd->exec("UPDATE Position_prise SET  AUTO =  'ON' WHERE  N_Prise = 'LED2'");
+			$auto_prise2 = "ON";
+		}
+		else if ($auto_LED2 == "ON"){
+			$auto_imageled2 = "bouton/OFF-ROUGE.gif";
+			$bdd->exec("UPDATE Position_prise SET  AUTO =  'OFF' WHERE  N_Prise = 'LED2'");
+			$auto_prise2 ="OFF";
+		}
+
+		$html .='<form action="#" method="post" name="auto_led2" id="auto_formbouton2">';
+		$html .='<input type="hidden" name="auto_LED2" value="' . $auto_prise2 . '">';
+		$html .='<input  type="image" id="auto_pr2" 
+				src="' . $auto_imageled2 . '"></form>';
+
+		return $html;
+	}
 
 	function pr3(){
 		$html       = '';
 		global $bdd;
-		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = '3'");
+		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LED3'");
 		$Temp = $reponse->fetch();
 		$prise3 = $Temp[0];
 
@@ -160,14 +207,14 @@
 			$h = fopen("http://192.168.0.34/?LED3=ON", "rb");
 			$imageled3 = "bouton/BoutonOFF.gif";
 			$imageled3M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '3'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED3'");
 			$prise3 = "ON";
 		}
 		else if ($LED3 == "ON"){
 			$h= fopen("http://192.168.0.34/?LED3=OFF", "rb");
 			$imageled3 = "bouton/BoutonON.gif";
 			$imageled3M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '3'");
+			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED3'");
 			$prise3 = "OFF";
 		}
 
@@ -184,7 +231,7 @@
 	function prA(){
 		$html       = '';
 		global $bdd;
-		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = '4'");
+		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LEDA'");
 		$Temp = $reponse->fetch();
 		$priseA = $Temp[0];
 
@@ -208,7 +255,7 @@
 		if ($LEDA == "OFF") {
 			if ($priseA == "OFF"){
 				$h = fopen("http://192.168.0.34/?LEDA=ON", "rb");
-				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '4'");
+				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LEDA'");
 			}
 			$imageledA = "bouton/BoutonOFF.gif";
 			$imageledAM = "bouton/BoutonOFF-ON.gif";
@@ -217,7 +264,7 @@
 		else if ($LEDA == "ON"){
 			if ($priseA == "ON"){
 				$h= fopen("http://192.168.0.34/?LEDA=OFF", "rb");
-				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '4'");
+				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LEDA'");
 			}
 			$imageledA = "bouton/BoutonON.gif";
 			$imageledAM = "bouton/BoutonON-OFF.gif";

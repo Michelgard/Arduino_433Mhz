@@ -25,7 +25,7 @@ else{
 
 if ($LEDA == "OFF") {
 	if ($priseA == "OFF"){
-		$h = fopen("http://192.168.0.34/?LEDA=ON", "rb");
+		$h = fopen("http://88.160.18.73:85/?LEDA=ON", "rb");
 		$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '4'");
 	}
 	$imageledA = "bouton/BoutonOFF.gif";
@@ -34,7 +34,7 @@ if ($LEDA == "OFF") {
 }
 else if ($LEDA == "ON"){
 	if ($priseA == "ON"){
-		$h= fopen("http://192.168.0.34/?LEDA=OFF", "rb");
+		$h= fopen("http://88.160.18.73:85/?LEDA=OFF", "rb");
 		$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '4'");
 	}
 	$imageledA = "bouton/BoutonON.gif";

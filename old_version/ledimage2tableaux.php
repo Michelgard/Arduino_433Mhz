@@ -94,7 +94,7 @@ if ($LED1 == "ON")
 {
 // Set led1 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = @fopen("http://192.168.0.34/?LED1=ON", "rb");
+$h = @fopen("http://88.160.18.73:85/?LED1=ON", "rb");
 $imageled1 = "bouton/BoutonOFF.gif";
 $onoff1="OFF";
 }
@@ -102,7 +102,7 @@ else if ($LED1 == "OFF")
 {
 // Set led1 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= @fopen("http://192.168.0.34/?LED1=OFF", "rb");
+$h= @fopen("http://88.160.18.73:85/?LED1=OFF", "rb");
 $imageled1 = "bouton/BoutonON.gif";
 $onoff1="ON";
 }
@@ -112,7 +112,7 @@ if ($LED2 == "ON")
 {
 // Set led2 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED2=ON", "rb");
 $imageled2 = "bouton/BoutonOFF.gif";
 $onoff2="OFF";
 }
@@ -120,7 +120,7 @@ else if ($LED2 == "OFF")
 {
 // Set led2 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED2=OFF", "rb");
 $imageled2 = "bouton/BoutonON.gif";
 $onoff2="ON";
 }
@@ -130,7 +130,7 @@ if ($LED3 == "ON")
 {
 // Set led3 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = fopen("http://192.168.0.34/?LED3=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED3=ON", "rb");
 $imageled3 = "bouton/BoutonOFF.gif";
 $onoff3="OFF";
 }
@@ -138,7 +138,7 @@ else if ($LED3 == "OFF")
 {
 // Set led3 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= fopen("http://192.168.0.34/?LED3=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED3=OFF", "rb");
 $imageled3 = "bouton/BoutonON.gif";
 $onoff3="ON";
 }

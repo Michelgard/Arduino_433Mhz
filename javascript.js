@@ -4,6 +4,8 @@
 		bouton3();
 		boutonA();
 		
+		auto_bouton2();
+		
 		temp();
 		tempext();
 		
@@ -38,6 +40,14 @@
 			});
 			return false;
 		});
+		
+		$('#auto_bouton2').bind('click',function(){ 
+			auto_led2 = $('#auto_formbouton2').find("input[name=auto_LED2]").val();
+			$.post("ajax_unique.php",{block: "auto_pr2", auto_LED2: auto_led2},function(data){
+				$("#auto_bouton2").html(data);
+			});
+			return false;
+		});
 	});
 	
 	function bouton1(){
@@ -49,6 +59,18 @@
 		    data: "block=pr1",
 			success: function(code_html, statut){
 				$("#bouton1").html(code_html);
+			}
+		});
+	};
+	function auto_bouton2(){
+		$.ajax({
+			url: "ajax_unique.php",
+			async: false,
+			type: "GET",
+			dataType : "html",
+		    data: "block=auto_pr2",
+			success: function(code_html, statut){
+				$("#auto_bouton2").html(code_html);
 			}
 		});
 	};

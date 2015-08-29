@@ -19,13 +19,13 @@ if ($LED1 == "ON")
 {
 // Set led1 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = fopen("http://192.168.0.34/?LED1=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED1=ON", "rb");
 }
 else if ($LED1 == "OFF")
 {
 // Set led1 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= fopen("http://192.168.0.34/?LED1=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED1=OFF", "rb");
 }
 
 // Check of LED2 is set.  If it is use it
@@ -42,13 +42,13 @@ if ($LED2 == "ON")
 {
 // Set led2 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED2=ON", "rb");
 }
 else if ($LED2 == "OFF")
 {
 // Set led2 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED2=OFF", "rb");
 }
 
 // Check of LED4 is set.  If it is use it
@@ -65,13 +65,13 @@ if ($LED3 == "ON")
 {
 // Set led3 ON by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h = @fopen("http://192.168.0.34/?LED3=ON", "rb");
+$h = @fopen("http://88.160.18.73:85/?LED3=ON", "rb");
 }
 else if ($LED3 == "OFF")
 {
 // Set led3 OFF by calling the Arduino using fopen
 //ini_set("allow_url_fopen On", true);
-$h= @fopen("http://192.168.0.34/?LED3=OFF", "rb");
+$h= @fopen("http://88.160.18.73:85/?LED3=OFF", "rb");
 }
 
 ?>

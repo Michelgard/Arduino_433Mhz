@@ -4,7 +4,7 @@
 // connexion a la base
 try
 {
-$bdd = new PDO('mysql:host=IP;dbname=name base', 'login', 'pass',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$bdd = new PDO('mysql:host=195.144.11.156;dbname=michelgard1', 'michelgard1', 'remake30',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (Exception $e)
 {
@@ -211,14 +211,14 @@ else{
 }
 
 if ($LED1 == "OFF"){
-	$h = @fopen("http://192.168.0.34/?LED1=ON", "rb");
+	$h = @fopen("http://88.160.18.73:85/?LED1=ON", "rb");
 	$imageled1 = "bouton/BoutonOFF.gif";
 	$imageled1M = "bouton/BoutonOFF-ON.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '1'");
 	$prise1= "ON";
 }
 else if ($LED1 == "ON"){
-	$h= @fopen("http://192.168.0.34/?LED1=OFF", "rb");
+	$h= @fopen("http://88.160.18.73:85/?LED1=OFF", "rb");
 	$imageled1 = "bouton/BoutonON.gif";
 	$imageled1M = "bouton/BoutonON-OFF.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '1'");
@@ -226,14 +226,14 @@ else if ($LED1 == "ON"){
 }
 
 if ($LED2 == "OFF"){
-	$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+	$h = fopen("http://88.160.18.73:85/?LED2=ON", "rb");
 	$imageled2 = "bouton/BoutonOFF.gif";
 	$imageled2M = "bouton/BoutonOFF-ON.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '2'");
 	$prise2 = "ON";
 }
 else if ($LED2 == "ON"){
-	$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+	$h= fopen("http://88.160.18.73:85/?LED2=OFF", "rb");
 	$imageled2 = "bouton/BoutonON.gif";
 	$imageled2M = "bouton/BoutonON-OFF.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '2'");
@@ -241,14 +241,14 @@ else if ($LED2 == "ON"){
 }
 
 if ($LED3 == "OFF"){
-	$h = fopen("http://192.168.0.34/?LED3=ON", "rb");
+	$h = fopen("http://88.160.18.73:85/?LED3=ON", "rb");
 	$imageled3 = "bouton/BoutonOFF.gif";
 	$imageled3M = "bouton/BoutonOFF-ON.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '3'");
 	$prise3 = "ON";
 }
 else if ($LED3 == "ON"){
-	$h= fopen("http://192.168.0.34/?LED3=OFF", "rb");
+	$h= fopen("http://88.160.18.73:85/?LED3=OFF", "rb");
 	$imageled3 = "bouton/BoutonON.gif";
 	$imageled3M = "bouton/BoutonON-OFF.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '3'");
@@ -257,7 +257,7 @@ else if ($LED3 == "ON"){
 
 if ($LEDA == "OFF") {
 	if ($priseA == "OFF"){
-		$h = fopen("http://192.168.0.34/?LEDA=ON", "rb");
+		$h = fopen("http://88.160.18.73:85/?LEDA=ON", "rb");
 		$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '4'");
 	}
 	$imageledA = "bouton/BoutonOFF.gif";
@@ -266,7 +266,7 @@ if ($LEDA == "OFF") {
 }
 else if ($LEDA == "ON"){
 	if ($priseA == "ON"){
-		$h= fopen("http://192.168.0.34/?LEDA=OFF", "rb");
+		$h= fopen("http://88.160.18.73:85/?LEDA=OFF", "rb");
 		$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '4'");
 	}
 	$imageledA = "bouton/BoutonON.gif";

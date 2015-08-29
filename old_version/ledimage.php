@@ -171,14 +171,14 @@ else{
 
 if ($LED1 == "ON")
 {
-$h = @fopen("http://192.168.0.34/?LED1=ON", "rb");
+$h = @fopen("http://88.160.18.73:85/?LED1=ON", "rb");
 $imageled1 = "bouton/BoutonOFF.gif";
 $imageled1M = "bouton/BoutonOFF-ON.gif";
 $onoff1="OFF";
 }
 else if ($LED1 == "OFF")
 {
-$h= @fopen("http://192.168.0.34/?LED1=OFF", "rb");
+$h= @fopen("http://88.160.18.73:85/?LED1=OFF", "rb");
 $imageled1 = "bouton/BoutonON.gif";
 $imageled1M = "bouton/BoutonON-OFF.gif";
 $onoff1="ON";
@@ -187,14 +187,14 @@ $onoff1="ON";
 
 if ($LED2 == "ON")
 {
-$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED2=ON", "rb");
 $imageled2 = "bouton/BoutonOFF.gif";
 $imageled2M = "bouton/BoutonOFF-ON.gif";
 $onoff2="OFF";
 }
 else if ($LED2 == "OFF")
 {
-$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED2=OFF", "rb");
 $imageled2 = "bouton/BoutonON.gif";
 $imageled2M = "bouton/BoutonON-OFF.gif";
 $onoff2="ON";
@@ -203,14 +203,14 @@ $onoff2="ON";
 
 if ($LED3 == "ON")
 {
-$h = fopen("http://192.168.0.34/?LED3=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LED3=ON", "rb");
 $imageled3 = "bouton/BoutonOFF.gif";
 $imageled3M = "bouton/BoutonOFF-ON.gif";
 $onoff3="OFF";
 }
 else if ($LED3 == "OFF")
 {
-$h= fopen("http://192.168.0.34/?LED3=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LED3=OFF", "rb");
 $imageled3 = "bouton/BoutonON.gif";
 $imageled3M = "bouton/BoutonON-OFF.gif";
 $onoff3="ON";
@@ -218,14 +218,14 @@ $onoff3="ON";
 
 if ($LEDA == "ON")
 {
-$h = fopen("http://192.168.0.34/?LEDA=ON", "rb");
+$h = fopen("http://88.160.18.73:85/?LEDA=ON", "rb");
 $imageledA = "bouton/BoutonOFF.gif";
 $imageledAM = "bouton/BoutonOFF-ON.gif";
 $onoffA="OFF";
 }
 else if ($LEDA == "OFF")
 {
-$h= fopen("http://192.168.0.34/?LEDA=OFF", "rb");
+$h= fopen("http://88.160.18.73:85/?LEDA=OFF", "rb");
 $imageledA = "bouton/BoutonON.gif";
 $imageledAM = "bouton/BoutonON-OFF.gif";
 $onoffA="ON";

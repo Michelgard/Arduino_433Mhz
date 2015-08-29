@@ -23,14 +23,14 @@ else{
 }
 
 if ($LED2 == "OFF"){
-	$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+	$h = fopen("http://88.160.18.73:85/?LED2=ON", "rb");
 	$imageled2 = "bouton/BoutonOFF.gif";
 	$imageled2M = "bouton/BoutonOFF-ON.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = '2'");
 	$prise2 = "ON";
 }
 else if ($LED2 == "ON"){
-	$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+	$h= fopen("http://88.160.18.73:85/?LED2=OFF", "rb");
 	$imageled2 = "bouton/BoutonON.gif";
 	$imageled2M = "bouton/BoutonON-OFF.gif";
 	$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = '2'");
