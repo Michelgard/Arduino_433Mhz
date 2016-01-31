@@ -78,6 +78,34 @@ void loop(){
        rf_send(1397076);
     }
     
+    // IF LED4=ON turn it ON
+  if(strstr((char *)Ethernet::buffer + pos, "GET /?LED4=ON") != 0) {
+       rf_send(5510485);
+    }
+
+  // IF LED4=OFF turn it OFF  
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?LED4=OFF") != 0) {
+       rf_send(5510484);
+    }
+    // IF LED5=ON turn it ON
+  if(strstr((char *)Ethernet::buffer + pos, "GET /?LED5=ON") != 0) {
+       rf_send(5522774);
+    }
+
+  // IF LED5=OFF turn it OFF  
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?LED5=OFF") != 0) {
+       rf_send(5522773);
+    }
+    // IF LED6=ON turn it ON
+  if(strstr((char *)Ethernet::buffer + pos, "GET /?LED6=ON") != 0) {
+       rf_send(5525845);
+    }
+
+  // IF LED6=OFF turn it OFF  
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?LED6=OFF") != 0) {
+       rf_send(5525844);
+    }
+    
     // IF LEDA=ON turn it ON
   if(strstr((char *)Ethernet::buffer + pos, "GET /?LEDA=ON") != 0) {
        rf_send(4028056);
@@ -86,6 +114,17 @@ void loop(){
 // IF LEDA=OFF turn it OFF  
     if(strstr((char *)Ethernet::buffer + pos, "GET /?LEDA=OFF") != 0) {
        rf_send(4028056);
+    }
+    
+// volet lucie  
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?VOLETLU=MON") != 0) {
+       rf_send(4232320);
+    }
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?VOLETLU=STO") != 0) {
+       rf_send(4232322);
+    }
+    if(strstr((char *)Ethernet::buffer + pos, "GET /?VOLETLU=DES") != 0) {
+       rf_send(4232324);
     }
 
 //Return a page so the request is completed.
