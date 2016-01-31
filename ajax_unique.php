@@ -12,7 +12,11 @@
 	case 'pr1':
 		 echo pr1();
 		 break;
-		 
+	
+	case 'auto_pr1':
+		 echo auto_pr1();
+		 break;
+	
 	case 'pr2':
 		 echo pr2();
 		 break;
@@ -23,6 +27,10 @@
 		 
 	case 'pr3':
 		 echo pr3();
+		 break;
+		 
+	case 'pr6':
+		 echo pr6();
 		 break;
 		 
 	case 'prA':
@@ -36,8 +44,32 @@
 	case 'temp_ext':
 		 echo temp_ext();
 		 break;
+		 
+	case 'volet_lucie_haut':
+		 echo volet_lucie_haut();
+		 break;
+		 
+	case 'volet_lucie_bas':
+		 echo volet_lucie_bas();
+		 break;
+		 
+	case 'volet_lucie_stop':
+		 echo volet_lucie_stop();
+		 break;
 	}
-	  
+	 
+	function emetteur($led, $on_off, $nb){
+		global $bdd;
+		$url="http://xx.xxx.xx.xx:80/?" . $led . "=" . $on_off;
+		
+		for ($i=0; $i<$nb; $i++){
+			$h = @fopen($url, "rb");	
+			//usleep(200000);
+		}
+		$sql= "UPDATE Position_prise SET  Valeur_Prise ='". $on_off . "' WHERE  N_Prise ='" . $led . "'";
+		$bdd->exec($sql);
+	}
+	
 	function pr1(){
 		$html       = '';
 		global $bdd;
@@ -63,17 +95,15 @@
 		}
 
 		if ($LED1 == "OFF"){
-			$h = @fopen("http://192.168.0.34/?LED1=ON", "rb");
+			emetteur("LED1", "ON", 2);
 			$imageled1 = "bouton/BoutonOFF.gif";
 			$imageled1M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED1'");
 			$prise1= "ON";
 		}
 		else if ($LED1 == "ON"){
-			$h= @fopen("http://192.168.0.34/?LED1=OFF", "rb");
+			emetteur("LED1", "OFF", 2);
 			$imageled1 = "bouton/BoutonON.gif";
 			$imageled1M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED1'");
 			$prise1 = "OFF";
 		}
 		$html .='<form action="#" method="post" name="led1" id="formbouton1">';
@@ -86,6 +116,49 @@
 		return $html;
 	}
 
+	function auto_pr1(){
+		
+		$html       = '';
+		global $bdd;
+		$reponse = $bdd->query("select AUTO from Position_prise where N_Prise = 'LED1'");
+		$Temp = $reponse->fetch();
+		$auto_prise1 = $Temp[0];
+
+
+		if ($auto_prise1=="ON"){
+			$auto_imageled1 = "bouton/ON-VERT.gif";
+			
+		}
+		else{
+			$auto_imageled1 = "bouton/OFF-ROUGE.gif";
+		}
+		
+		if (isset($_POST["auto_LED1"])){
+			 $auto_LED1= $_POST["auto_LED1"];
+		}
+		else{
+			$auto_LED1="";
+		}
+	
+		if ($auto_LED1 == "OFF"){
+			$auto_imageled1 = "bouton/ON-VERT.gif";
+			$bdd->exec("UPDATE Position_prise SET  AUTO =  'ON' WHERE  N_Prise = 'LED1'");
+			$auto_prise1 = "ON";
+		}
+		else if ($auto_LED1 == "ON"){
+			$auto_imageled1 = "bouton/OFF-ROUGE.gif";
+			$bdd->exec("UPDATE Position_prise SET  AUTO =  'OFF' WHERE  N_Prise = 'LED1'");
+			$auto_prise1 ="OFF";
+		}
+
+		$html .='<form action="#" method="post" name="auto_led1" id="auto_formbouton1">';
+		$html .='<input type="hidden" name="auto_LED1" value="' . $auto_prise1 . '">';
+		$html .='<input  type="image" id="auto_pr1" 
+				src="' . $auto_imageled1 . '"></form>';
+
+		return $html;
+	}
+	
 	function pr2(){
 		
 		$html       = '';
@@ -112,17 +185,15 @@
 		}
 
 		if ($LED2 == "OFF"){
-			$h = fopen("http://192.168.0.34/?LED2=ON", "rb");
+			emetteur("LED2", "ON", 2);
 			$imageled2 = "bouton/BoutonOFF.gif";
 			$imageled2M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED2'");
 			$prise2 = "ON";
 		}
 		else if ($LED2 == "ON"){
-			$h= fopen("http://192.168.0.34/?LED2=OFF", "rb");
+			emetteur("LED2", "OFF" ,2);
 			$imageled2 = "bouton/BoutonON.gif";
 			$imageled2M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED2'");
 			$prise2 ="OFF";
 		}
 
@@ -204,17 +275,15 @@
 		}
 
 		if ($LED3 == "OFF"){
-			$h = fopen("http://192.168.0.34/?LED3=ON", "rb");
+			emetteur("LED3", "ON", 2);
 			$imageled3 = "bouton/BoutonOFF.gif";
 			$imageled3M = "bouton/BoutonOFF-ON.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LED3'");
 			$prise3 = "ON";
 		}
 		else if ($LED3 == "ON"){
-			$h= fopen("http://192.168.0.34/?LED3=OFF", "rb");
+			emetteur("LED3", "OFF", 2);
 			$imageled3 = "bouton/BoutonON.gif";
 			$imageled3M = "bouton/BoutonON-OFF.gif";
-			$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LED3'");
 			$prise3 = "OFF";
 		}
 
@@ -227,52 +296,67 @@
 
 		return $html;
 	}
+	
+	function pr6(){
+		$html       = '';
+		global $bdd;
+		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LED6'");
+		$Temp = $reponse->fetch();
+		$prise6 = $Temp[0];
+
+
+		if ($prise6=="ON"){
+			$imageled6 = "bouton/BoutonOFF.gif";
+			$imageled6M = "bouton/BoutonOFF-ON.gif";
+		}
+		else{
+			$imageled6 = "bouton/BoutonON.gif";
+			$imageled6M = "bouton/BoutonON-OFF.gif";
+		}
+		
+		if (isset($_POST["LED6"])){
+			 $LED6= $_POST["LED6"];
+		}
+		else{
+			$LED6="";
+		}
+
+		if ($LED6 == "OFF"){
+			emetteur("LED6", "ON", 2);
+			$imageled6 = "bouton/BoutonOFF.gif";
+			$imageled6M = "bouton/BoutonOFF-ON.gif";
+			$prise6 = "ON";
+		}
+		else if ($LED6 == "ON"){
+			emetteur("LED6", "OFF", 2);
+			$imageled6 = "bouton/BoutonON.gif";
+			$imageled6M = "bouton/BoutonON-OFF.gif";
+			$prise6 = "OFF";
+		}
+
+		$html .='<form action="#" method="post" name="led6" id="formbouton6">';
+		$html .='<input type="hidden" name="LED6" value="' . $prise6 . '">';
+		$html .='<input  type="image" id="pr6" 
+				onmouseover="src=\'' . $imageled6M . '\'" 
+				onmouseout="src=\'' . $imageled6 . '\'" 
+				src="' . $imageled6 . '"></form>';
+
+		return $html;
+	}
 
 	function prA(){
 		$html       = '';
-		global $bdd;
-		$reponse = $bdd->query("select Valeur_Prise from Position_prise where N_Prise = 'LEDA'");
-		$Temp = $reponse->fetch();
-		$priseA = $Temp[0];
-
-
-		if ($priseA=="ON"){
-			$imageledA = "bouton/BoutonOFF.gif";
-			$imageledAM = "bouton/BoutonOFF-ON.gif";
-		}
-		else{
-			$imageledA = "bouton/BoutonON.gif";
-			$imageledAM = "bouton/BoutonON-OFF.gif";
-		}
+	
+		$imageledA = "bouton/bouton-On-Off.gif";
+		$imageledAM = "bouton/bouton-On-Off_M.gif";
 		
 		if (isset($_POST["LEDA"])){
-			 $LEDA= $_POST["LEDA"];
+			emetteur("LEDA", "ON", 1);
 		}
-		else{
-			$LEDA="";
-		}
-
-		if ($LEDA == "OFF") {
-			if ($priseA == "OFF"){
-				$h = fopen("http://192.168.0.34/?LEDA=ON", "rb");
-				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'ON' WHERE  N_Prise = 'LEDA'");
-			}
-			$imageledA = "bouton/BoutonOFF.gif";
-			$imageledAM = "bouton/BoutonOFF-ON.gif";
-			$priseA = "ON";
-		}
-		else if ($LEDA == "ON"){
-			if ($priseA == "ON"){
-				$h= fopen("http://192.168.0.34/?LEDA=OFF", "rb");
-				$bdd->exec("UPDATE Position_prise SET  Valeur_Prise =  'OFF' WHERE  N_Prise = 'LEDA'");
-			}
-			$imageledA = "bouton/BoutonON.gif";
-			$imageledAM = "bouton/BoutonON-OFF.gif";
-			$priseA = "OFF";
-		}
+		
 
 		$html .='<form action="#" method="post" name="ledA" id="formboutonA">';
-		$html .='<input type="hidden" name="LEDA" value="' . $priseA . '">';
+		$html .='<input type="hidden" name="LEDA" value="ON">';
 		$html .='<input  type="image" id="prA" 
 				onmouseover="src=\'' . $imageledAM . '\'" 
 				onmouseout="src=\'' . $imageledA . '\'" 
@@ -281,73 +365,63 @@
 		return $html;
 	}
 
-	function temp_salon(){
+	function volet_lucie_haut(){
 		$html       = '';
 		
-		if (!defined("THERMOMETER_SENSOR_PATH")) define("THERMOMETER_SENSOR_PATH", "/sys/bus/w1/devices/28-00044cf9b4ff/w1_slave");
-		$thermometer = fopen(THERMOMETER_SENSOR_PATH, "r");
-		$thermometerReadings = fread($thermometer, filesize(THERMOMETER_SENSOR_PATH));
-		fclose($thermometer);
-		preg_match("/t=(.+)/", preg_split("/\n/", $thermometerReadings)[1], $matches);
-		$temperature = $matches[1] / 1000;
+		if (isset($_POST["VOLETLUM"])){
+			emetteur("VOLETLU", "MON", 2);
+		}
 		
-		$temperature = round($temperature, 1);
-		$temp = explode(".", $temperature);
-		if(!array_key_exists( '1', $temp)){$temp[1]='';}
-	  
-		$html .= '<div class="container">';
-		$html .= '  <div class="de">';
-		$html .= '     <div class="den">';
-		$html .= '      <div class="dene">';
-		$html .= '       <div class="denem">';
-		$html .= '       <div class="deneme">';
-		$html .= $temp[0];
-		$html .= '<span>.';
-		$html .= $temp[1];
-		$html .= '</span><strong>&deg;</strong>';          
-		$html .= '      </div>';
-		$html .= '  <BR><BR><BR><BR><BR><strong>SALON</strong></div>';
-		$html .= '    </div>';
-		$html .= '   </div>';
-		$html .= '   </div>';    
-		$html .= '</div>';
 		
+		$imageledvolet_lucie = "bouton/haut.gif";
+		$imageledvolet_lucieM = "bouton/hautM.gif";
+		
+		$html .='<form action="#" method="post" name="ledvolet_lucie_haut" id="formvolet_lucie_haut">';
+		$html .='<input type="hidden" name="VOLETLUM" value="ON">';
+		$html .='<input  type="image" id="volet_lucie_haut" 
+				onmouseover="src=\'' . $imageledvolet_lucieM . '\'" 
+				onmouseout="src=\'' . $imageledvolet_lucie . '\'" 
+				src="' . $imageledvolet_lucie . '"></form>';
+
 		return $html;
 	}
-		
-	function temp_ext(){
+	
+	function volet_lucie_stop(){
 		$html       = '';
-
-		global $bdd;
-		$reponse = $bdd->query('select MAX(ID_Temp_Ext) from Temp_Ext');
-		$Max_ID = $reponse->fetch();
-		$ID =$Max_ID[0];
-
-
-		//dernière valeur
-		$reponse = $bdd->query("select Temp_Temp_Ext from Temp_Ext where ID_Temp_Ext = '$ID'");
-		$Temp = $reponse->fetch();
-		$temperature=$Temp[0];
 		
-		$temperature = round($temperature, 1);
-		$temp = explode(".", $temperature);
-	  
-		$html .= '<div class="container">';
-		$html .= '  <div class="de">';
-		$html .= '     <div class="den">';
-		$html .= '      <div class="dene">';
-		$html .= '       <div class="denem">';
-		$html .= '       <div class="deneme">';
-		$html .= $temp[0];
-		$html .= '<span>.';
-		$html .= $temp[1];
-		$html .= '</span><strong>&deg;</strong>';          
-		$html .= '      </div>';
-		$html .= '  <BR><BR><BR><BR><BR><strong>EXT</strong></div>';
-		$html .= '    </div>';
-		$html .= '   </div>';
-		$html .= '   </div>';    
-		$html .= '</div>';
+		if (isset($_POST["VOLETLUS"])){
+			emetteur("VOLETLU", "STO", 2);
+		}
+		
+		$imageledvolet_lucie = "bouton/Stop_Volet.gif";
+		$imageledvolet_lucieM = "bouton/Stop_VoletM.gif";
+		
+		$html .='<form action="#" method="post" name="ledvolet_lucie_stop" id="formvolet_lucie_stop">';
+		$html .='<input type="hidden" name="VOLETLUS" value="ON">';
+		$html .='<input  type="image" id="volet_lucie_stop" 
+				onmouseover="src=\'' . $imageledvolet_lucieM . '\'" 
+				onmouseout="src=\'' . $imageledvolet_lucie . '\'" 
+				src="' . $imageledvolet_lucie . '"></form>';
+
+		return $html;
+	}
+	
+	function volet_lucie_bas(){
+		$html       = '';
+		
+		if (isset($_POST["VOLETLUD"])){
+			emetteur("VOLETLU", "DES", 2);
+		}
+		
+		$imageledvolet_lucie = "bouton/bas.gif";
+		$imageledvolet_lucieM = "bouton/basM.gif";
+		
+		$html .='<form action="#" method="post" name="ledvolet_lucie_bas" id="formvolet_lucie_bas">';
+		$html .='<input type="hidden" name="VOLETLUD" value="ON">';
+		$html .='<input  type="image" id="volet_lucie_bas" 
+				onmouseover="src=\'' . $imageledvolet_lucieM . '\'" 
+				onmouseout="src=\'' . $imageledvolet_lucie . '\'" 
+				src="' . $imageledvolet_lucie . '"></form>';
 
 		return $html;
 	}
