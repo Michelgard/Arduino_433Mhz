@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	  <head>
-		<title>Commande 433Mhz</title>
+		<title>Commandes Domotiques</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 		<meta http-equiv="Content-Language" content="Fr"/>
 		<meta name="Author" lang="fr" content="Torna"/>
@@ -9,40 +9,69 @@
 		<meta http-equiv="Cache-Control" content="no-cache">
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Expires" content="0">
+		
+		<!--Information pour appli iphone-->
+			<meta name="apple-mobile-web-app-capable" content="yes">
+			<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+			<link rel="apple-touch-icon" href="bouton/icone_iphone.png"/>
+			<meta name="viewport" content = "height = device-height, width = device-width, 
+				user-scalable = no" />
+		<!--fin-->
+		
+		<script type="text/javascript">
+		
+		</script>
+		
 		<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="javascript.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" charset="utf-8" />
+		<link rel="shortcut icon" href="bouton/favicon.ico">
 		 
 	  </head>
 
 	<body>	
 	<center>
 	<table id="table_prise_titre" >
-		<tr id="tr_prise"><td id="td_titre_prise" colspan="6">Commandes Electriques</td></tr>
 		<tr id="tr_prise">
+			<td id="td_titre_prise" colspan="7">Commandes domotiques</td>
+			<td id="td_titre_prise">Volets</td>
+		</tr>
+		
+		<tr id="tr_prise">
+			<td id="td_prise_titre">Lustre<br>Chambre</td>
 			<td id="td_prise_titre"><div></div></td>
 			<td id="td_prise_titre">Lampe<br>Chambre</td>
-			<td id="td_prise_titre">Lustre<br>Chambre</td>
 			<td id="td_prise_titre">Lampe<br>Salon</td>
 			<td id="td_prise_titre">Ecran<br>PI</td>
+			<td id="td_prise_titre">Disque<br>Free</td>
 			<td id="td_prise_titre"><div></div></td>
+			<td id="td_prise_titre" >Volet Lucie</td>
 		</tr>
 
 		<tr  id="tr_prise">
+			<td id="td_prise_bouton">
+				<div id="boutonA" ></div>
+			</td>
 			<td id="td_prise_titre"><img src="bouton/ampoule_eteinte.gif"><br><br><br><img src="bouton/ampoule_allumee.gif"></td>
 			<td id="td_prise_bouton">
 				<div id="bouton1" ></div>
 			</td>
-			<td id="td_prise_bouton">
-				<div id="boutonA" ></div>
-			</td>
+			
 			<td id="td_prise_bouton">
 				<div id="bouton2" ></div>
 			</td>
 			<td id="td_prise_bouton">
 				<div id="bouton3" ></div>
 			</td>
+			<td id="td_prise_bouton">
+				<div id="bouton6" ></div>
+			</td>
 			<td id="td_prise_titre"><img src="bouton/ampoule_eteinte.gif"><br><br><br><img src="bouton/ampoule_allumee.gif"></td>
+			<td  >
+				<div id="volet_lucie_haut"></div>
+				<div id="volet_lucie_stop"></div>
+				
+			</td>
 		</tr>
 		
 		<tr  id="tr_prise">
@@ -52,8 +81,8 @@
 			<td id="td_prise_bouton">
 				<div></div>
 			</td>
-			<td id="td_prise_bouton">
-				<div></div>
+			<td id="td_prise_titre">
+				Auto<div id="auto_bouton1" ></div>
 			</td>
 			<td id="td_prise_titre">
 				Auto<div id="auto_bouton2" ></div>
@@ -64,13 +93,15 @@
 			<td id="td_prise_titre">
 				<div></div>
 			</td>
+			<td id="td_prise_titre">
+				<div></div>
+			</td>
+			<td  id="td_prise_titre">
+				<div id="volet_lucie_bas" ></div>
+			</td>
 		</tr>
+		
 	</table>
-	
-	<table><tr>
-	<td><div id="temp_salon"></div></td>
-	<td><div id="temp_ext"></div></td>
-	</tr></table>
 	
 	</center>
 	</body>
